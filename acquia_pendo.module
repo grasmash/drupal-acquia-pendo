@@ -10,6 +10,13 @@
  */
 function acquia_pendo_preprocess_html(&$variables) {
   // TEST: putenv('AH_SITE_GROUP=eemgrasmick');.
+  // TEST: putenv('AH_PENDO_API_KEY=something');.
+
+  // Overwrite the Pendo API key with the one provided by Acquia.
+  if (getenv('AH_PENDO_API_KEY') !== FALSE) {
+    $variables['#attached']['drupalSettings']['pendo']['api_key'] = getenv('AH_PENDO_API_KEY');
+  }
+
   $acquia_env_vars = [
     'AH_CURRENT_REGION',
     'AH_SITE_NAME',
@@ -23,5 +30,15 @@ function acquia_pendo_preprocess_html(&$variables) {
     if (getenv($value) !== FALSE) {
       $variables['#attached']['drupalSettings']['pendo']['data']['account'][$value] = getenv($value);
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hook_form_pendo_admin_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if (getenv('AH_PENDO_API_KEY') !== FALSE) {
+    $form['api_key']['#disabled'] = TRUE;
+    $form['api_key']['#description'] = t('This field has been disabled by the Acquia Pendo module because this application is being run in an Acquia environment. The Acquia Pendo API key will be used automatically.');
   }
 }

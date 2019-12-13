@@ -3,3 +3,6 @@ type: module
 description: 'Pendo integration for Acquia products.'
 core: 8.x
 package: 'Web Services'
+
+dependencies:
+  - drupal:pendo
