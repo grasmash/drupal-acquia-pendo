@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains acquia_pendo.install.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function acquia_pendo_install() {
+  module_set_weight('acquia_pendo', 100);
+}
