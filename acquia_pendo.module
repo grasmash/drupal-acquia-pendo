@@ -10,8 +10,8 @@
  */
 function acquia_pendo_preprocess_html(&$variables) {
   // Overwrite the Pendo API key with the one provided by Acquia.
-  if (getenv('AH_PENDO_API_KEY') !== FALSE) {
-    $variables['#attached']['drupalSettings']['pendo']['api_key'] = getenv('AH_PENDO_API_KEY');
+  if (getenv('AH_PENDO_KEY') !== FALSE) {
+    $variables['#attached']['drupalSettings']['pendo']['api_key'] = getenv('AH_PENDO_KEY');
   }
 
   $acquia_env_vars = [
@@ -34,7 +34,7 @@ function acquia_pendo_preprocess_html(&$variables) {
  * Implements hook_form_FORM_ID_alter().
  */
 function acquia_pendo_form_pendo_admin_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  if (getenv('AH_PENDO_API_KEY') !== FALSE) {
+  if (getenv('AH_PENDO_KEY') !== FALSE) {
     $form['api_key']['#disabled'] = TRUE;
     $form['api_key']['#prefix'] = t('This application is being run in an Acquia environment. The Acquia Pendo API key will be used automatically.');
     $form['api_key']['#value'] = '';
