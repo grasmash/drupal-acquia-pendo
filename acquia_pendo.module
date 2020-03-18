@@ -37,7 +37,7 @@ function acquia_pendo_form_pendo_admin_form_alter(&$form, \Drupal\Core\Form\Form
   if ($ahPendoApiKey = getenv('AH_PENDO_KEY')) {
     $form['api_key']['#disabled'] = TRUE;
     $form['api_key']['#prefix'] = t('This application is being run in an Acquia environment. The Acquia Pendo API key will be used automatically.');
-    $form['api_key']['#value'] = $ahPendoApiKey;
+    $form['api_key']['#value'] = '';
     $form['actions']['submit']['#disabled'] = TRUE;
   }
 }
