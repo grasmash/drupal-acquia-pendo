@@ -1,0 +1,10 @@
+{
+  "name": "drupal/acquia_pendo",
+  "type": "drupal-module",
+  "description": "Pendo integration for Acquia products.",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/pendo": "^1.0"
+  },
+  "minimum-stability": "dev"
+}

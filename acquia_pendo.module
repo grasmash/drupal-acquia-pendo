@@ -34,9 +34,10 @@ function acquia_pendo_preprocess_html(&$variables) {
  * Implements hook_form_FORM_ID_alter().
  */
 function acquia_pendo_form_pendo_admin_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  if (getenv('AH_PENDO_KEY') !== FALSE) {
+  if ($ahPendoApiKey = getenv('AH_PENDO_KEY')) {
     $form['api_key']['#disabled'] = TRUE;
     $form['api_key']['#prefix'] = t('This application is being run in an Acquia environment. The Acquia Pendo API key will be used automatically.');
-    $form['api_key']['#value'] = '';
+    $form['api_key']['#value'] = $ahPendoApiKey;
+    $form['actions']['submit']['#disabled'] = TRUE;
   }
 }
