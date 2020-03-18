@@ -1,0 +1,5 @@
+services:
+  acquia_pendo_ah_key.overrider:
+    class: 'Drupal\acquia_pendo\Config\AcquiaPendoAhKeyOverrider'
+    tags:
+      - {name: config.factory.override, priority: 5}
